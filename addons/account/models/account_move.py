@@ -584,6 +584,7 @@ class AccountMove(models.Model):
             else:
                 move.invoice_user_id = False
 
+    @api.depends('state')
     def _compute_payment_reference(self):
         for move in self.filtered(lambda m: (
             m.state == 'posted'
